@@ -1,15 +1,31 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { login } from '../../actions/auth'
+import { useForm } from '../../hooks/useForm'
 
 export const LoginScreen = () => {
+
+    const dispatch = useDispatch();
+    const [formValues, handleInputChange] = useForm({
+        email: 'citlaly@gmail.com',
+        password: '123456'
+    });
+
+    const { email, password } = formValues;
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        dispatch(login(123,'test'));
+    }
+
     return (
         <>
             <h3 className="auth__title">Login</h3>
-            <form>
-                <input autoComplete="off" className="auth__input" type="text" placeholder="Email" name="email" />
-                <input className="auth__input" type="password" placeholder="Password" name="password" />
+            <form onSubmit={handleLogin}>
+                <input autoComplete="off" className="auth__input" type="text" placeholder="Email" name="email" value={email} onChange={handleInputChange} />
+                <input className="auth__input" type="password" placeholder="Password" name="password" value={password} onChange={handleInputChange} />
                 <button className="btn btn-primary btn-block" type="submit">Login</button>
-                {/* <hr /> */}
                 <div className="auth__social-network">
                     <p>Login with social networks</p>
                     <div
