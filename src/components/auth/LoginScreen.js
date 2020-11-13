@@ -9,7 +9,7 @@ import { useForm } from '../../hooks/useForm'
 export const LoginScreen = () => {
 
     const dispatch = useDispatch();
-    const { msgError } = useSelector(state => state.ui);
+    const { msgError, loading } = useSelector(state => state.ui);
 
     const [formValues, handleInputChange] = useForm({
         email: 'citlaly@gmail.com',
@@ -52,7 +52,7 @@ export const LoginScreen = () => {
                         {msgError}
                     </div>
                 }
-                <button className="btn btn-primary btn-block" type="submit">Login</button>
+                <button className="btn btn-primary btn-block" type="submit" disabled={loading}>Login</button>
                 <div className="auth__social-network">
                     <p>Login with social networks</p>
                     <div

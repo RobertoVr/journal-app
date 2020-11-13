@@ -10,7 +10,7 @@ import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 export const RegisterScreen = () => {
 
     const dispatch = useDispatch();
-    const { msgError } = useSelector(state => state.ui);
+    const { msgError, loading } = useSelector(state => state.ui);
 
     const [formValues, handleInputChange] = useForm({
         name: 'Citlaly',
@@ -23,7 +23,6 @@ export const RegisterScreen = () => {
     const handleRegister = (e) => {
         e.preventDefault();
         if (isFormValid()) {
-            console.log('Formulario correcto');
             dispatch(startRegisterWithEmailPasswordName(email, password, name));
         }
     }
@@ -33,11 +32,9 @@ export const RegisterScreen = () => {
             dispatch(setError('Name is required'));
             return false;
         } else if (!validator.isEmail(email)) {
-            // console.log('Email is not valid');
             dispatch(setError('Email is not valid'));
             return false;
         } else if (password !== password2 || password.length < 5) {
-            // console.log('Password should be at least 6 characters');
             dispatch(setError('Password should be at least 6 characters'));
             return false;
         }
@@ -50,17 +47,17 @@ export const RegisterScreen = () => {
             <>
                 <h3 className="auth__title">Register</h3>
                 <form onSubmit={handleRegister}>
+                    <input autoComplete="off" className="auth__input" type="text" placeholder="Name" name="name" value={name} onChange={handleInputChange} />
+                    <input autoComplete="off" className="auth__input" type="text" placeholder="Email" name="email" value={email} onChange={handleInputChange} />
+                    <input className="auth__input" type="password" placeholder="Password" name="password" value={password} onChange={handleInputChange} />
+                    <input className="auth__input" type="password" placeholder="Confirm Password" name="password2" value={password2} onChange={handleInputChange} />
                     {
                         msgError &&
                         <div className="auth__alert-error">
                             {msgError}
                         </div>
                     }
-                    <input autoComplete="off" className="auth__input" type="text" placeholder="Name" name="name" value={name} onChange={handleInputChange} />
-                    <input autoComplete="off" className="auth__input" type="text" placeholder="Email" name="email" value={email} onChange={handleInputChange} />
-                    <input className="auth__input" type="password" placeholder="Password" name="password" value={password} onChange={handleInputChange} />
-                    <input className="auth__input" type="password" placeholder="Confirm Password" name="password2" value={password2} onChange={handleInputChange} />
-                    <button className="btn btn-primary btn-block mb-5" type="submit">Register</button>
+                    <button className="btn btn-primary btn-block mb-5" type="submit" disabled={loading}>Register</button>
                     <Link to="/auth/login" className="link">
                         Already registered?
                     </Link>
