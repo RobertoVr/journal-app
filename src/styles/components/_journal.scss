@@ -37,35 +37,36 @@
   overflow-y: scroll;
 }
 .journal__entry {
-    background-color: white;
-    border-radius: 4px;
-    color: $dark-grey;
-    display: flex;
-    margin-bottom: 10px;
-    overflow: hidden;
+  background-color: white;
+  border-radius: 4px;
+  color: $dark-grey;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  overflow: hidden;
 }
 .journal__entriy-picture {
-    height: 75px;
-    width: 75px;
+  height: 75px;
+  width: 75px;
 }
 
-.journal__entry-body{
-    padding: 10px;
+.journal__entry-body {
+  padding: 10px;
 }
-.journal__entry-title{
-    font-style: 14px;
-    font-weight: bold;
+.journal__entry-title {
+  font-style: 14px;
+  font-weight: bold;
 }
-.journal__entry-content{
-    font-size: 10px;
+.journal__entry-content {
+  font-size: 10px;
 }
-.journal__entry-date-box{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5px;
+.journal__entry-date-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
 }
-.journal__entry-date-box span{
-    font-size: 12px;
+.journal__entry-date-box span {
+  font-size: 12px;
 }
