@@ -15,9 +15,9 @@ export const JournalEntry = ({
             date, title, body, url
         }));
     }
-
+    
     return (
-        <div className="journal__entry poiner" onClick={handleEntryClick}>
+        <div className="journal__entry poiner animate__animated animate__fadeInLeft animate__faster" onClick={handleEntryClick}>
             {
                 url &&
                 <div
